@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatelessWidget {
@@ -9,7 +10,6 @@ class ProjectCard extends StatelessWidget {
   final List<String> technologies;
   final String? githubUrl;
   final String? liveUrl;
-
 
   const ProjectCard({
     super.key,
@@ -34,7 +34,7 @@ class ProjectCard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
               imageUrl,
-              height: 150,
+              height: 100,
               width: double.infinity,
               fit: BoxFit.contain,
             ),
@@ -44,22 +44,29 @@ class ProjectCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
+                Text(title, style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 8),
                 Text(description),
                 const SizedBox(height: 16),
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: technologies.map((tech) => Chip(
-                    label: Text(tech),
-                  )).toList(),
+                  children:
+                      technologies
+                          .map((tech) => Chip(label: Text(tech)))
+                          .toList(),
                 ),
                 const SizedBox(height: 16),
-                Center(child: Text(year, style: Theme.of(context).textTheme.titleLarge)),
+            Center(
+              child: Text(
+                year,
+                style: GoogleFonts.poppins(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

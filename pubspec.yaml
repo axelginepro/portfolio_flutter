@@ -1,4 +1,4 @@
-name: mon_portfolio
+name: flutter_portfolio
 description: "Portfolio"
 publish_to: 'none'
 version: 1.0.0+1
@@ -12,9 +12,11 @@ dependencies:
   cupertino_icons: 1.0.8
   flutter_riverpod: 2.4.10
   flutter_animate: 4.5.0
-  url_launcher: 6.2.5
+  url_launcher: 6.2.6
   google_fonts: 6.1.0
   responsive_framework: 1.1.1
+  font_awesome_flutter: 10.4.0
+
 
 dev_dependencies:
   flutter_test:

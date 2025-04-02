@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:mon_portfolio/shared/widgets/nav_button_home.dart';
+
+import '../../shared/widgets/nav_button_home.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -36,17 +37,21 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     'Axel GINEPRO',
                     style: theme.textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.bold, color: Colors.blue
                     ),
                   ).animate().fade(delay: 400.ms).slideY(begin: 0.2, end: 0),
                   const SizedBox(height: 8),
                   Text(
                     'Concepteur Développeur',
-                    style: theme.textTheme.titleLarge,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                        color: Colors.lightBlue
+                    ),
                   ).animate().fade(delay: 600.ms).slideY(begin: 0.2, end: 0),
                   Text(
                     'Flutter',
-                    style: theme.textTheme.titleLarge,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                        color: Colors.lightBlue
+                    ),
                   ).animate().fade(delay: 600.ms).slideY(begin: 0.2, end: 0),
                   const SizedBox(height: 32),
                   Column(

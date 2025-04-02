@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mon_portfolio/core/navigation/app_router.dart';
-import 'package:mon_portfolio/core/theme/app_theme.dart';
+/*import 'package:mon_portfolio/core/theme/app_theme.dart';*/
 import 'package:responsive_framework/responsive_framework.dart';
+
+import 'core/navigation/app_router.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -15,9 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Axel GINEPRO Portfolio',
+      /*
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
+      */
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       onGenerateRoute: generateRoute,

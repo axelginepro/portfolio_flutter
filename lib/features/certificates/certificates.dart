@@ -11,48 +11,50 @@ class CertificatsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Certificats'),
+        centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
         elevation: 0,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 32,
-          children: [
-            const Spacer(),
-            _buildLinkButton(
-              "Titre Professionnel\nAnimateur en Technologies",
-              "https://drive.google.com/file/d/18aFzffoMMizu2Mx2U-gdWQP6xS5-bUQ2/view?usp=sharing",
-            ),
-            _buildLinkButton(
-              "Titre Professionnel\nConcepteur Designer UI",
-              "https://drive.google.com/file/d/1bFzffoMMizu2Mx2U-gdWQP6xS5-cUQ2/view?usp=sharing",
-            ),
-            _buildLinkButton(
-              "Attestation\nLa Capsule Coding Bootcamp",
-              "https://drive.google.com/file/d/1cGzffoMMizu2Mx2U-gdWQP6xS5-dUQ3/view?usp=sharing",
-            ),
-            _buildLinkButton(
-              "Attestation\nANSSI",
-              "https://drive.google.com/file/d/1dHzffoMMizu2Mx2U-gdWQP6xS5-eUQ4/view?usp=sharing",
-            ),
-            _buildLinkButton(
-              "Certificat\nOpquast \"Maîtrise de la qualité en projet web\"",
-              "https://drive.google.com/file/d/1eIzffoMMizu2Mx2U-gdWQP6xS5-fUQ5/view?usp=sharing",
-            ),
-            const Spacer(),
-            NavButton(
-              title: 'Projets',
-              onPressed: () => Navigator.pushReplacementNamed(context, '/projects'),
-            ),
-            const SizedBox(height: 1),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              _buildCard(
+                "Titre Professionnel\nAnimateur en Technologies",
+                "https://drive.google.com/file/d/18aFzffoMMizu2Mx2U-gdWQP6xS5-bUQ2/view?usp=drive_link",
+              ),
+              _buildCard(
+                "Titre Professionnel\nConcepteur Designer UI",
+                "https://drive.google.com/file/d/1FxNHZ0bU-UAq3EPMClJbYOf1EGJ8-t_F/view?usp=drive_link",
+              ),
+              _buildCard(
+                "Attestation\nLa Capsule Coding Bootcamp",
+                "https://drive.google.com/file/d/0BwFfsH91yIATWC1oU2xLSXRlclRsaFl2angtV3lmTkpBay1v/view?usp=drive_link&resourcekey=0-nqtlOq45axsibLDX2cNH2w",
+              ),
+              _buildCard(
+                "Attestation\nANSSI",
+                "https://drive.google.com/file/d/1BkJzrw672hhKtWL-XWgC-eKRa5j5zlbM/view?usp=drive_link",
+              ),
+              _buildCard(
+                "Certificat Opquast \n\"Maîtrise de la qualité en projet web\"",
+                "https://drive.google.com/file/d/1fU8cr9FYHjuSYyxZnfPG-QdzXn1fgokG/view?usp=drive_link",
+              ),
+              const Spacer(),
+              NavButton(
+                title: 'Projets',
+                onPressed: () => Navigator.pushReplacementNamed(context, '/projects'),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildLinkButton(String title, String url) {
+  Widget _buildCard(String title, String url) {
     return GestureDetector(
       onTap: () async {
         final Uri uri = Uri.parse(url);
@@ -62,19 +64,27 @@ class CertificatsScreen extends StatelessWidget {
           throw 'Could not launch $url';
         }
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 2.0),
-          borderRadius: BorderRadius.circular(8.0),
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
         ),
-        child: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue,
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+            ],
           ),
         ),
       ),

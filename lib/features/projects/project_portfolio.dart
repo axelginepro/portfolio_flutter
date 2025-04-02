@@ -11,6 +11,7 @@ class ProjectPortfolio extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Portfolios'),
+        centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
         elevation: 0,
       ),
