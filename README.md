@@ -1,6 +1,4 @@
-# mon_portfolio
-
-A new Flutter project.
+# Flutter Portfolio
 
 ## Getting Started
 
