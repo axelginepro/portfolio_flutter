@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../shared/widgets/nav_button_home.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,6 +25,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Spacer(),
                   ClipOval(
                     child: Image.asset(
                       'assets/images/profile.png',
@@ -36,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     'Axel GINEPRO',
                     style: theme.textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.bold, color: Colors.blue
+                        fontWeight: FontWeight.bold, color: Colors.blue
                     ),
                   ).animate().fade(delay: 400.ms).slideY(begin: 0.2, end: 0),
                   const SizedBox(height: 8),
@@ -78,6 +80,26 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          // Replace with your Android link
+                          launchUrl(Uri.parse('https://drive.google.com/file/d/1I_js5_0Gxrr_jyW-pNgC9P82dk9OZVMi/view?usp=drive_link'));
+                        },
+                        child: Text('Android'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Replace with your iOS link
+                          launchUrl(Uri.parse('https://www.apple.com/app-store/'));
+                        },
+                        child: Text('iOS'),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
