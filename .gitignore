@@ -2,6 +2,14 @@
 .dart_tool/
 .packages
 .pub-cache/
+# Ignorer tout le contenu de build
+build/
+
+# Inclure spécifiquement build/web
+!build/web/
+
+# Inclure également tous les fichiers et sous-dossiers dans build/web
+!build/web/**
 
 # Android related files
 android/.gradle/
