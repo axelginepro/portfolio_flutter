@@ -158,7 +158,7 @@ class _AboutScreenState extends State<AboutScreen> {
               textAlign: TextAlign.center,
               text: TextSpan(
                 style: GoogleFonts.nunitoSans(
-                  fontSize: 18,
+                  fontSize: 17,
                   color: Colors.black87,
                 ),
                 children: [

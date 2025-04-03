@@ -88,15 +88,6 @@ class _ContactScreenState extends State<ContactScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.github),
-                    color: Colors.black,
-                    iconSize: 60,
-                    onPressed: () {
-                      _launchURL('https://github.com/axelginepro/');
-                    },
-                  ),
-                  const SizedBox(width: 20),
-                  IconButton(
                     icon: const FaIcon(FontAwesomeIcons.twitter),
                     color: Colors.blue,
                     iconSize: 60,
@@ -111,6 +102,15 @@ class _ContactScreenState extends State<ContactScreen> {
                     iconSize: 60,
                     onPressed: () {
                       _launchURL('https://www.linkedin.com/in/axel-ginepro/');
+                    },
+                  ),
+                  const SizedBox(width: 20),
+                  IconButton(
+                    icon: const FaIcon(FontAwesomeIcons.github),
+                    color: Colors.black,
+                    iconSize: 60,
+                    onPressed: () {
+                      _launchURL('https://github.com/axelginepro/');
                     },
                   ),
                 ],
