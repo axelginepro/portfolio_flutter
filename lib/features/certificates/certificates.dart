@@ -107,43 +107,61 @@ class _CertificatsScreenState extends State<CertificatsScreen>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(),
-                    HoverCard(
-                      title:
-                      'Titre Professionnel\nConcepteur Designer UI',
-                      url:
-                      'https://drive.google.com/file/d/1FxNHZ0bU-UAq3EPMClJbYOf1EGJ8-t_F/view?usp=drive_link',
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: HoverCard(
+                        title:
+                        'Titre Professionnel\nConcepteur Designer UI',
+                        url:
+                        'https://drive.google.com/file/d/1FxNHZ0bU-UAq3EPMClJbYOf1EGJ8-t_F/view?usp=drive_link',
+                      ),
                     ),
-                    HoverCard(
-                      title:
-                      'Certificat Opquast \nMaîtrise de la qualité en projet web"',
-                      url:
-                      'https://drive.google.com/file/d/1fU8cr9FYHjuSYyxZnfPG-QdzXn1fgokG/view?usp=drive_link',
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: HoverCard(
+                        title:
+                        'Certificat Opquast \nMaîtrise de la qualité en projet web"',
+                        url:
+                        'https://drive.google.com/file/d/1fU8cr9FYHjuSYyxZnfPG-QdzXn1fgokG/view?usp=drive_link',
+                      ),
                     ),
-                    HoverCard(
-                      title: 'Attestation\nANSSI',
-                      url:
-                      'https://drive.google.com/file/d/1BkJzrw672hhKtWL-XWgC-eKRa5j5zlbM/view?usp=drive_link',
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: HoverCard(
+                        title: 'Attestation\nANSSI',
+                        url:
+                        'https://drive.google.com/file/d/1BkJzrw672hhKtWL-XWgC-eKRa5j5zlbM/view?usp=drive_link',
+                      ),
                     ),
-                    HoverCard(
-                      title:
-                      'Attestation\nLa Capsule Coding Bootcamp',
-                      url:
-                      'https://drive.google.com/file/d/0BwFfsH91yIATWC1oU2xLSXRlclRsaFl2angtV3lmTkpBay1v/view?usp=drive_link&resourcekey=0-nqtlOq45axsibLDX2cNH2w',
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: HoverCard(
+                        title:
+                        'Attestation\nLa Capsule Coding Bootcamp',
+                        url:
+                        'https://drive.google.com/file/d/0BwFfsH91yIATWC1oU2xLSXRlclRsaFl2angtV3lmTkpBay1v/view?usp=drive_link&resourcekey=0-nqtlOq45axsibLDX2cNH2w',
+                      ),
                     ),
-                    HoverCard(
-                      title:
-                      'Titre Professionnel\nAnimateur en Technologies',
-                      url:
-                      'https://drive.google.com/file/d/18aFzffoMMizu2Mx2U-gdWQP6xS5-bUQ2/view?usp=drive_link',
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: HoverCard(
+                        title:
+                        'Titre Professionnel\nAnimateur en Technologies',
+                        url:
+                        'https://drive.google.com/file/d/18aFzffoMMizu2Mx2U-gdWQP6xS5-bUQ2/view?usp=drive_link',
+                      ),
                     ),
                     const Spacer(),
                     if (screenWidth > 600)
-                      NavButton(
-                      title: "Retour à l'accueil",
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/home');
-                      },
-                    ),
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: NavButton(
+                          title: "Retour à l'accueil",
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, '/home');
+                          },
+                        ),
+                      ),
                   ],
                 ),
               ),

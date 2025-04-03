@@ -2,7 +2,6 @@
 .dart_tool/
 .packages
 .pub-cache/
-build/
 
 # Android related files
 android/.gradle/
