@@ -63,8 +63,14 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    bool isMobile = MediaQuery.of(context).size.width < 600;
+    final screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+    bool isMobile = MediaQuery
+        .of(context)
+        .size
+        .width < 600;
     return Scaffold(
       appBar: isMobile
           ? AppBar(
@@ -81,8 +87,14 @@ class _AboutScreenState extends State<AboutScreen> {
       )
           : null,
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/bg.gif'),
@@ -131,9 +143,12 @@ class _AboutScreenState extends State<AboutScreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'About'),
-          BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Certificats'),
-          BottomNavigationBarItem(icon: Icon(Icons.portrait), label: 'Portfolio'),
-          BottomNavigationBarItem(icon: Icon(Icons.contact_page), label: 'Contact'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.school), label: 'Certificats'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.portrait), label: 'Portfolio'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.contact_page), label: 'Contact'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
@@ -145,6 +160,7 @@ class _AboutScreenState extends State<AboutScreen> {
           : null,
     );
   }
+
   Widget _buildProfileSection() {
     return Card(
       elevation: 6,
@@ -164,12 +180,12 @@ class _AboutScreenState extends State<AboutScreen> {
                 children: [
                   TextSpan(
                     text:
-                        "Actuellement chez SQLI Lyon \ndepuis Mars 2022\npour un poste de Concepteur / Développeur,\nsuite à mon titre professionnel RNCP niveau 6\n",
+                    "Actuellement chez SQLI Lyon \ndepuis Mars 2022\npour un poste de Concepteur / Développeur,\nsuite à mon titre professionnel RNCP niveau 6\n",
                   ),
                   WidgetSpan(
                     child: Tooltip(
                       message:
-                          "Création de Contenu : Newsletter, Instagram, Facebook, Twitter, Youtube ( Marketing d'influence, Elaboration Stratégie Social Media, Veille E-Réputation) Création Graphique ( Photoshop, Illustrator, Animate, InDesign, Premiere Pro, Media Encoder, Figma)",
+                      "Création de Contenu : Newsletter, Instagram, Facebook, Twitter, Youtube ( Marketing d'influence, Elaboration Stratégie Social Media, Veille E-Réputation) Création Graphique ( Photoshop, Illustrator, Animate, InDesign, Premiere Pro, Media Encoder, Figma)",
                       child: Text(
                         "'Concepteur /",
                         style: GoogleFonts.nunitoSans(
@@ -183,7 +199,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   WidgetSpan(
                     child: Tooltip(
                       message:
-                          "Developpement web & application mobile / Windows => html/css, Javascript, Adobe Air, React, react.native, Flutter",
+                      "Developpement web & application mobile / Windows => html/css, Javascript, Adobe Air, React, react.native, Flutter",
                       child: Text(
                         " Designer UI'",
                         style: GoogleFonts.nunitoSans(
@@ -209,93 +225,98 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 
   Widget _buildKeyPointsSection() {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final cardWidth = screenWidth * 0.9;
-    return SizedBox(
-      width: cardWidth,
-      child: Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Center(
-                child: Text(
-                  'Les 3 principaux points',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2196F3),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.center,
-                child: CardsBulletPoints(
-                  title: "Conception d'un support web design et video.",
-                  details:
-                      "(Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Figma)",
-                ),
-              ),
-              const Divider(height: 16),
-              CardsBulletPoints(
-                title: "Gestion de Projet de communication numérique.",
-                details:
-                    "(Création Persona, Newsletter, Instagram, Facebook, Youtube)",
-              ),
-              const Divider(height: 16),
-              CardsBulletPoints(
-                title: "Intégration/Développement",
-                details:
-                    "(html/css, javascript, wordpress, php, react, react.native, flutter)",
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPreviousExperienceSection() {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final cardWidth = screenWidth * 0.9;
-    return SizedBox(
-      width : cardWidth,
-      child: Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.work, color: Color(0xFF2196F3)),
-                  SizedBox(width: 8),
-                  Text(
-                    "Expérience précédente",
+    return Center(
+      child: IntrinsicWidth(
+        child: Card(
+          elevation: 4,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Center(
+                  child: Text(
+                    'Les 3 principaux points',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF2196F3),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              const Text(
-                "Précédemment chez LDLC-Event Lyon durant deux ans (2020-2022), en tant que développeur front-end pour les sites LDLC-OL et d4gamers",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 15, color: Colors.black87),
-              ),
-            ],
+                ),
+                const SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.center,
+                  child: CardsBulletPoints(
+                    title: "Conception d'un support web design et video.",
+                    details:
+                    "(Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Figma)",
+                  ),
+                ),
+                const Divider(height: 16),
+                CardsBulletPoints(
+                  title: "Gestion de Projet de communication numérique.",
+                  details:
+                  "(Création Persona, Newsletter, Instagram, Facebook, Youtube)",
+                ),
+                const Divider(height: 16),
+                CardsBulletPoints(
+                  title: "Intégration/Développement",
+                  details:
+                  "(html/css, javascript, wordpress, php, react, react.native, flutter)",
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Widget _buildPreviousExperienceSection() {
+    return Center(
+      child: IntrinsicWidth(
+        child: Card(
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16)),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.work, color: Color(0xFF2196F3)),
+                    SizedBox(width: 8),
+                    Text(
+                      "Expérience précédente",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2196F3),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                const Text(
+                  "Précédemment chez LDLC-Event Lyon durant deux ans (2020-2022), en tant que développeur front-end pour les sites LDLC-OL et d4gamers",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 15, color: Colors.black87),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+

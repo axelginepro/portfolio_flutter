@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -38,20 +39,21 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     'Axel GINEPRO',
                     style: theme.textTheme.headlineLarge?.copyWith(
-                        fontWeight: FontWeight.bold, color: Colors.blue
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
                     ),
                   ).animate().fade(delay: 400.ms).slideY(begin: 0.2, end: 0),
                   const SizedBox(height: 8),
                   Text(
                     'Concepteur Développeur',
                     style: theme.textTheme.titleLarge?.copyWith(
-                        color: Colors.lightBlue
+                      color: Colors.lightBlue,
                     ),
                   ).animate().fade(delay: 600.ms).slideY(begin: 0.2, end: 0),
                   Text(
                     'front-end / Flutter',
                     style: theme.textTheme.titleLarge?.copyWith(
-                        color: Colors.lightBlue
+                      color: Colors.lightBlue,
                     ),
                   ).animate().fade(delay: 600.ms).slideY(begin: 0.2, end: 0),
                   const SizedBox(height: 32),
@@ -81,25 +83,27 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          // Replace with your Android link
-                          launchUrl(Uri.parse('https://drive.google.com/file/d/1I_js5_0Gxrr_jyW-pNgC9P82dk9OZVMi/view?usp=drive_link'));
-                        },
-                        child: Text('Android'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Replace with your iOS link
-                          launchUrl(Uri.parse('https://www.apple.com/app-store/'));
-                        },
-                        child: Text('iOS'),
-                      ),
-                    ],
-                  )
+                  kIsWeb
+                      ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              launchUrl(
+                                Uri.parse(
+                                  'https://drive.google.com/file/d/1I_js5_0Gxrr_jyW-pNgC9P82dk9OZVMi/view?usp=drive_link',
+                                ),
+                              );
+                            },
+                            child: Text('Android'),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text('iOS soon'),
+                          ),
+                        ],
+                      )
+                      : SizedBox.shrink(),
                 ],
               ),
             ),
