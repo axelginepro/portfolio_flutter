@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../shared/widgets/nav_button_home.dart';
+
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
 
@@ -47,6 +49,8 @@ class _ContactScreenState extends State<ContactScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -54,8 +58,7 @@ class _ContactScreenState extends State<ContactScreen> {
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
-            color: Colors.white
-          ),
+              color: Colors.white),
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
@@ -103,29 +106,26 @@ class _ContactScreenState extends State<ContactScreen> {
               ],
             ),
             const Spacer(),
+            if (screenWidth > 600)
+              NavButton(
+                title: "Retour à l'accueil",
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/home');
+                },
+              ),
+            const Spacer(),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: screenWidth <= 600
+          ? BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'About',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Certificats',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.portrait),
-            label: 'Portfolio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.contact_page),
-            label: 'Contact',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'About'),
+          BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Certificats'),
+          BottomNavigationBarItem(icon: Icon(Icons.portrait), label: 'Portfolio'),
+          BottomNavigationBarItem(icon: Icon(Icons.contact_page), label: 'Contact'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
@@ -133,7 +133,8 @@ class _ContactScreenState extends State<ContactScreen> {
         showSelectedLabels: true,
         showUnselectedLabels: true,
         onTap: _onItemTapped,
-      ),
+      )
+          : null,
     );
   }
 }

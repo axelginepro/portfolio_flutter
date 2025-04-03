@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../shared/widgets/cards_bullet_points.dart';
+import '../../shared/widgets/nav_button_home.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -11,6 +12,30 @@ class AboutScreen extends StatefulWidget {
 
 class _AboutScreenState extends State<AboutScreen> {
   int _selectedIndex = 1;
+  bool _showProfileSection = false;
+  bool _showKeyPointsSection = false;
+  bool _showPreviousExperienceSection = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _triggerAnimations();
+  }
+
+  void _triggerAnimations() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    setState(() {
+      _showProfileSection = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 500));
+    setState(() {
+      _showKeyPointsSection = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 500));
+    setState(() {
+      _showPreviousExperienceSection = true;
+    });
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -38,6 +63,8 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -62,17 +89,37 @@ class _AboutScreenState extends State<AboutScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildProfileSection(),
+              AnimatedOpacity(
+                opacity: _showProfileSection ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 500),
+                child: _buildProfileSection(),
+              ),
               const SizedBox(height: 24),
-              _buildKeyPointsSection(),
+              AnimatedOpacity(
+                opacity: _showKeyPointsSection ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 500),
+                child: _buildKeyPointsSection(),
+              ),
               const SizedBox(height: 24),
-              _buildPreviousExperienceSection(),
+              AnimatedOpacity(
+                opacity: _showPreviousExperienceSection ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 500),
+                child: _buildPreviousExperienceSection(),
+              ),
               const SizedBox(height: 32),
+              if (screenWidth > 600)
+                NavButton(
+                  title: "Retour à l'accueil",
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  },
+                ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: screenWidth <= 600
+          ? BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
@@ -99,10 +146,10 @@ class _AboutScreenState extends State<AboutScreen> {
         showSelectedLabels: true,
         showUnselectedLabels: true,
         onTap: _onItemTapped,
-      ),
+      )
+          : null,
     );
   }
-
   Widget _buildProfileSection() {
     return Card(
       elevation: 6,
@@ -116,13 +163,13 @@ class _AboutScreenState extends State<AboutScreen> {
               textAlign: TextAlign.center,
               text: TextSpan(
                 style: GoogleFonts.nunitoSans(
-                  fontSize: 15,
+                  fontSize: 18,
                   color: Colors.black87,
                 ),
                 children: [
                   TextSpan(
                     text:
-                        "Actuellement chez SQLI Lyon depuis Mars 2022\npour un poste de Concepteur / Développeur,\nsuite à mon titre professionnel RNCP niveau 6\n",
+                        "Actuellement chez SQLI Lyon \ndepuis Mars 2022\npour un poste de Concepteur / Développeur,\nsuite à mon titre professionnel RNCP niveau 6\n",
                   ),
                   WidgetSpan(
                     child: Tooltip(

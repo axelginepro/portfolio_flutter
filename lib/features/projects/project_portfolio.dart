@@ -109,42 +109,57 @@ class _ProjectPortfolioState extends State<ProjectPortfolio> {
         child: SingleChildScrollView(
           child: AnimationLimiter(
             child: Center(
-              child: Wrap(
-                spacing: 16.0,
-                runSpacing: 16.0,
-                alignment: WrapAlignment.center,
-                children: List.generate(projects.length, (index) {
-                  final project = projects[index];
-                  return AnimationConfiguration.staggeredGrid(
-                    position: index,
-                    duration: const Duration(milliseconds: 2000),
-                    columnCount: screenWidth > 600 ? 2 : 1,
-                    child: SlideAnimation(
-                      verticalOffset: 50.0,
-                      child: FadeInAnimation(
-                        child: SizedBox(
-                          width: cardWidth,
-                          child: ProjectCard(
-                            title: project['title'],
-                            description: project['description'],
-                            imageUrl: project['imageUrl'],
-                            technologies:
-                            List<String>.from(project['technologies']),
-                            year: project['year'],
-                            githubUrl: project['githubUrl'],
-                            liveUrl: project['liveUrl'],
+              child: Column(
+                children: [
+                  Wrap(
+                    spacing: 16.0,
+                    runSpacing: 16.0,
+                    alignment: WrapAlignment.center,
+                    children: List.generate(projects.length, (index) {
+                      final project = projects[index];
+                      return AnimationConfiguration.staggeredGrid(
+                        position: index,
+                        duration: const Duration(milliseconds: 2000),
+                        columnCount: screenWidth > 600 ? 2 : 1,
+                        child: SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: SizedBox(
+                              width: cardWidth,
+                              child: ProjectCard(
+                                title: project['title'],
+                                description: project['description'],
+                                imageUrl: project['imageUrl'],
+                                technologies:
+                                List<String>.from(project['technologies']),
+                                year: project['year'],
+                                githubUrl: project['githubUrl'],
+                                liveUrl: project['liveUrl'],
+                              ),
+                            ),
                           ),
                         ),
+                      );
+                    }),
+                  ),
+                  if (screenWidth > 600)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: NavButton(
+                        title: "Retour à l'accueil",
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/home');
+                        },
                       ),
                     ),
-                  );
-                }),
+                ],
               ),
             ),
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: screenWidth <= 600
+          ? BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Accueil"),
@@ -157,6 +172,37 @@ class _ProjectPortfolioState extends State<ProjectPortfolio> {
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
+      )
+          : null,
+    );
+  }
+}
+
+class NavButton extends StatelessWidget {
+  final String title;
+  final VoidCallback onPressed;
+
+  const NavButton({
+    super.key,
+    required this.title,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.cyan,
+          foregroundColor: Colors.white,
+          padding:
+          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+          textStyle:
+          const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        child: Text(title),
       ),
     );
   }
