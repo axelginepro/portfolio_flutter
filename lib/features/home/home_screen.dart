@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                     spacing: 12,
                     children: [
                       NavButton(
-                        title: 'à propos',
+                        title: 'Présentation',
                         onPressed: () => Navigator.pushNamed(context, '/about'),
                       ),
                       NavButton(

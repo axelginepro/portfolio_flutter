@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../shared/widgets/project_card.dart';
 
 class ProjectPortfolio extends StatefulWidget {
@@ -40,6 +41,56 @@ class _ProjectPortfolioState extends State<ProjectPortfolio> {
     final screenWidth = MediaQuery.of(context).size.width;
     final cardWidth = screenWidth > 600 ? screenWidth * 0.45 : screenWidth * 0.9;
 
+    final List<Map<String, dynamic>> projects = [
+      {
+        'title': 'Projet interne Mobileague',
+        'description':
+        "Développement d'une application de gestion de tournois de baby-foot avec affichage des données en temps réel.",
+        'imageUrl': 'assets/images/mobileague.png',
+        'technologies': ['Flutter', 'Dart', 'Firebase', 'Git', 'Jira'],
+        'year': '2024',
+        'githubUrl': null,
+        'liveUrl': null,
+      },
+      {
+        'title': 'Book Digital NAOS',
+        'description':
+        "Création, conception graphique des contenus. Maintenance et développement du book digital multimarque",
+        'imageUrl': 'assets/images/naos.png',
+        'technologies': ['Adobe Air', 'Suite Adobe', 'Git', 'Javascript', 'PHP', 'Trello'],
+        'year': '2022',
+        'githubUrl': null,
+        'liveUrl': null,
+      },
+      {
+        'title': 'Hypnose & Coaching',
+        'description': "Refonte Wordpress Site Vitrine",
+        'imageUrl': 'assets/images/hypnosecoaching.png',
+        'technologies': ['Wordpress', 'PHP', 'Suite Adobe'],
+        'year': '2022',
+        'githubUrl': null,
+        'liveUrl': null,
+      },
+      {
+        'title': 'DATA4GAMERS',
+        'description': "Webapp Statistiques / features pour CS:GO",
+        'imageUrl': 'assets/images/d4gamers.jpg',
+        'technologies': ['Wordpress', 'Java', 'Suite Adobe'],
+        'year': '2021',
+        'githubUrl': null,
+        'liveUrl': null,
+      },
+      {
+        'title': 'LDLC-OL',
+        'description': "Refonte Wordpress Site Vitrine",
+        'imageUrl': 'assets/images/ldlcol.png',
+        'technologies': ['Wordpress', 'PHP', 'Suite Adobe'],
+        'year': '2020',
+        'githubUrl': null,
+        'liveUrl': null,
+      },
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -54,93 +105,35 @@ class _ProjectPortfolioState extends State<ProjectPortfolio> {
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SingleChildScrollView(
-                  child: Wrap(
-                    spacing: 16.0,
-                    runSpacing: 16.0,
-                    alignment: WrapAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: cardWidth,
-                        child: ProjectCard(
-                          title: 'Projet interne Mobileague',
-                          description:
-                          "Développement d'une application de gestion de tournois de baby-foot avec affichage des données en temps réel.",
-                          imageUrl: 'assets/images/mobileague.png',
-                          technologies: [
-                            'Flutter',
-                            'Dart',
-                            'Firebase',
-                            'Git',
-                            'Firebase',
-                            'Jira',
-                          ],
-                          year: '2024',
-                        ),
-                      ),
-                      SizedBox(
-                        width: cardWidth,
-                        child: ProjectCard(
-                          title: 'Book Digital NAOS',
-                          description:
-                          "Création, conception graphique des contenus. Maintenance et développement du book digital multimarque",
-                          imageUrl: 'assets/images/naos.png',
-                          technologies: [
-                            'Adobe Air',
-                            'Suite Adobe',
-                            'Git',
-                            'Javascript',
-                            'PHP',
-                            'Trello',
-                          ],
-                          year: '2022',
-                        ),
-                      ),
-                      SizedBox(
-                        width: cardWidth,
-                        child: ProjectCard(
-                          title: 'Hypnose & Coaching',
-                          description: "Refonte Wordpress Site Vitrine",
-                          imageUrl: 'assets/images/hypnosecoaching.png',
-                          technologies: ['Wordpress', 'PHP', 'Suite Adobe'],
-                          year: '2022',
-                        ),
-                      ),
-                      SizedBox(
-                        width: cardWidth,
-                        child: ProjectCard(
-                          title: 'DATA4GAMERS',
-                          description:
-                          "Webapp Statistiques / features pour CS:GO",
-                          imageUrl: 'assets/images/d4gamers.jpg',
-                          technologies: ['Wordpress', 'Java', 'Suite Adobe'],
-                          year: '2021',
-                        ),
-                      ),
-                      SizedBox(
-                        width: cardWidth,
-                        child: ProjectCard(
-                          title: 'LDLC-OL',
-                          description:
-                          "Refonte Wordpress Site Vitrine",
-                          imageUrl: 'assets/images/ldlcol.png',
-                          technologies: ['Wordpress', 'PHP', 'Suite Adobe'],
-                          year: '2020',
-                        ),
-                      ),
-                    ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: projects.length,
+          itemBuilder: (context, index) {
+            final project = projects[index];
+            return AnimationConfiguration.staggeredList(
+              position: index,
+              duration: const Duration(milliseconds: 2000),
+              child: SlideAnimation(
+                verticalOffset: 50.0,
+                child: FadeInAnimation(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: ProjectCard(
+                      title: project['title'],
+                      description: project['description'],
+                      imageUrl: project['imageUrl'],
+                      technologies: List<String>.from(project['technologies']),
+                      year: project['year'],
+                      githubUrl: project['githubUrl'],
+                      liveUrl: project['liveUrl'],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -148,7 +141,7 @@ class _ProjectPortfolioState extends State<ProjectPortfolio> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'about',
+            label: 'About',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),

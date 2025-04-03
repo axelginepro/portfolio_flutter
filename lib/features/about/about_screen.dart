@@ -76,7 +76,7 @@ class _AboutScreenState extends State<AboutScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'about',
+            label: 'About',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),

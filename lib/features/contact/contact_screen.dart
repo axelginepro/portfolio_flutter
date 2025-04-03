@@ -112,7 +112,7 @@ class _ContactScreenState extends State<ContactScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'about',
+            label: 'About',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
