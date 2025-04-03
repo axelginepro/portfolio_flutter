@@ -1,16 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../shared/widgets/cards_bullet_points.dart';
-import '../../shared/widgets/nav_button_home.dart';
 
-class AboutScreen extends StatelessWidget {
+class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
+
+  @override
+  State<AboutScreen> createState() => _AboutScreenState();
+}
+
+class _AboutScreenState extends State<AboutScreen> {
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/about');
+        break;
+      case 2:
+        Navigator.pushReplacementNamed(context, '/certificates');
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, '/projects');
+        break;
+      case 4:
+        Navigator.pushReplacementNamed(context, '/contact');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('À propos'),
+        title: const Text(
+          'à propos',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
         elevation: 0,
@@ -20,29 +57,46 @@ class AboutScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _buildProfileSection(),
-              const SizedBox(height: 24),
-              _buildKeyPointsSection(),
-              const SizedBox(height: 24),
-              _buildPreviousExperienceSection(),
-              const SizedBox(height: 32),
-              NavButton(
-                title: 'Certificats',
-                onPressed:
-                    () => Navigator.pushReplacementNamed(
-                      context,
-                      '/certificates',
-                    ),
-              ),
-              const SizedBox(height: 20),
-            ],
-          ),
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _buildProfileSection(),
+            const SizedBox(height: 24),
+            _buildKeyPointsSection(),
+            const SizedBox(height: 24),
+            _buildPreviousExperienceSection(),
+            const SizedBox(height: 32),
+          ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'about',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Certificats',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.portrait),
+            label: 'Portfolio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.contact_page),
+            label: 'Contact',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -60,7 +114,7 @@ class AboutScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               text: TextSpan(
                 style: GoogleFonts.nunitoSans(
-                  fontSize: 16,
+                  fontSize: 15,
                   color: Colors.black87,
                 ),
                 children: [
@@ -70,7 +124,8 @@ class AboutScreen extends StatelessWidget {
                   ),
                   WidgetSpan(
                     child: Tooltip(
-                      message: "Création de Contenu : Newsletter, Instagram, Facebook, Twitter, Youtube ( Marketing d'influence, Elaboration Stratégie Social Media, Veille E-Réputation) Création Graphique ( Photoshop, Illustrator, Animate, InDesign, Premiere Pro, Media Encoder, Figma)",
+                      message:
+                          "Création de Contenu : Newsletter, Instagram, Facebook, Twitter, Youtube ( Marketing d'influence, Elaboration Stratégie Social Media, Veille E-Réputation) Création Graphique ( Photoshop, Illustrator, Animate, InDesign, Premiere Pro, Media Encoder, Figma)",
                       child: Text(
                         "'Concepteur /",
                         style: GoogleFonts.nunitoSans(
@@ -81,22 +136,24 @@ class AboutScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-              WidgetSpan(
-                child: Tooltip(
-                  message: "Developpement web & application mobile / Windows => html/css, Javascript, Adobe Air, React, react.native, Flutter",
-                  child: Text(
-                    " Designer UI'",
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2196F3),
+                  WidgetSpan(
+                    child: Tooltip(
+                      message:
+                          "Developpement web & application mobile / Windows => html/css, Javascript, Adobe Air, React, react.native, Flutter",
+                      child: Text(
+                        " Designer UI'",
+                        style: GoogleFonts.nunitoSans(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF2196F3),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
+                  TextSpan(text: "\nainsi qu'un certificat\n'"),
                   TextSpan(
-                    text:
-                        "\nainsi qu'un certificat\nOpquast 'Maîtrise de la qualité en projet web.'",
+                    text: "Opquast 'Maîtrise de la qualité en projet web.'",
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

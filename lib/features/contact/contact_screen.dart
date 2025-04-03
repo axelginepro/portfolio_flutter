@@ -2,8 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContactScreen extends StatelessWidget {
+class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
+
+  @override
+  State<ContactScreen> createState() => _ContactScreenState();
+}
+
+class _ContactScreenState extends State<ContactScreen> {
+  int _selectedIndex = 4;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/about');
+        break;
+      case 2:
+        Navigator.pushReplacementNamed(context, '/certificates');
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, '/projects');
+        break;
+      case 4:
+        Navigator.pushReplacementNamed(context, '/contact');
+        break;
+    }
+  }
 
   Future<void> _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
@@ -18,7 +49,14 @@ class ContactScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Contact'),
+        title: const Text(
+          'Contact',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            color: Colors.white
+          ),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
         elevation: 0,
@@ -27,6 +65,7 @@ class ContactScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(),
             const Text(
               'Suivez-moi sur les réseaux sociaux',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -62,9 +101,38 @@ class ContactScreen extends StatelessWidget {
                   },
                 ),
               ],
-            )
+            ),
+            const Spacer(),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'about',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Certificats',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.portrait),
+            label: 'Portfolio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.contact_page),
+            label: 'Contact',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: _onItemTapped,
       ),
     );
   }

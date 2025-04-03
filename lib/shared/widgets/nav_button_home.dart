@@ -19,9 +19,9 @@ class NavButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.cyan,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
           textStyle: const TextStyle(
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
