@@ -72,67 +72,80 @@ class _CertificatsScreenState extends State<CertificatsScreen>
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     return Scaffold(
-      appBar: AppBar(
+      appBar: isMobile
+          ? AppBar(
         title: const Text(
-          'Certificats',
+          "Certificats",
           style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
-        elevation: 0,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: FadeTransition(
-            opacity: _fadeAnimation,
-            child: SlideTransition(
-              position: _slideAnimation,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(),
-                  HoverCard(
-                    title:
-                    'Titre Professionnel\nConcepteur Designer UI',
-                    url:
-                    'https://drive.google.com/file/d/1FxNHZ0bU-UAq3EPMClJbYOf1EGJ8-t_F/view?usp=drive_link',
-                  ),
-                  HoverCard(
-                    title:
-                    'Certificat Opquast \nMaîtrise de la qualité en projet web"',
-                    url:
-                    'https://drive.google.com/file/d/1fU8cr9FYHjuSYyxZnfPG-QdzXn1fgokG/view?usp=drive_link',
-                  ),
-                  HoverCard(
-                    title: 'Attestation\nANSSI',
-                    url:
-                    'https://drive.google.com/file/d/1BkJzrw672hhKtWL-XWgC-eKRa5j5zlbM/view?usp=drive_link',
-                  ),
-                  HoverCard(
-                    title:
-                    'Attestation\nLa Capsule Coding Bootcamp',
-                    url:
-                    'https://drive.google.com/file/d/0BwFfsH91yIATWC1oU2xLSXRlclRsaFl2angtV3lmTkpBay1v/view?usp=drive_link&resourcekey=0-nqtlOq45axsibLDX2cNH2w',
-                  ),
-                  HoverCard(
-                    title:
-                    'Titre Professionnel\nAnimateur en Technologies',
-                    url:
-                    'https://drive.google.com/file/d/18aFzffoMMizu2Mx2U-gdWQP6xS5-bUQ2/view?usp=drive_link',
-                  ),
-                  const Spacer(),
-                  if (screenWidth > 600)
-                    NavButton(
-                    title: "Retour à l'accueil",
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/home');
-                    },
-                  ),
-                ],
+      )
+          : null,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bg.gif'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: FadeTransition(
+              opacity: _fadeAnimation,
+              child: SlideTransition(
+                position: _slideAnimation,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Spacer(),
+                    HoverCard(
+                      title:
+                      'Titre Professionnel\nConcepteur Designer UI',
+                      url:
+                      'https://drive.google.com/file/d/1FxNHZ0bU-UAq3EPMClJbYOf1EGJ8-t_F/view?usp=drive_link',
+                    ),
+                    HoverCard(
+                      title:
+                      'Certificat Opquast \nMaîtrise de la qualité en projet web"',
+                      url:
+                      'https://drive.google.com/file/d/1fU8cr9FYHjuSYyxZnfPG-QdzXn1fgokG/view?usp=drive_link',
+                    ),
+                    HoverCard(
+                      title: 'Attestation\nANSSI',
+                      url:
+                      'https://drive.google.com/file/d/1BkJzrw672hhKtWL-XWgC-eKRa5j5zlbM/view?usp=drive_link',
+                    ),
+                    HoverCard(
+                      title:
+                      'Attestation\nLa Capsule Coding Bootcamp',
+                      url:
+                      'https://drive.google.com/file/d/0BwFfsH91yIATWC1oU2xLSXRlclRsaFl2angtV3lmTkpBay1v/view?usp=drive_link&resourcekey=0-nqtlOq45axsibLDX2cNH2w',
+                    ),
+                    HoverCard(
+                      title:
+                      'Titre Professionnel\nAnimateur en Technologies',
+                      url:
+                      'https://drive.google.com/file/d/18aFzffoMMizu2Mx2U-gdWQP6xS5-bUQ2/view?usp=drive_link',
+                    ),
+                    const Spacer(),
+                    if (screenWidth > 600)
+                      NavButton(
+                      title: "Retour à l'accueil",
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/home');
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

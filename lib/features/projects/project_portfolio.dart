@@ -90,9 +90,10 @@ class _ProjectPortfolioState extends State<ProjectPortfolio> {
         'liveUrl': null,
       },
     ];
-
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     return Scaffold(
-      appBar: AppBar(
+      appBar: isMobile
+          ? AppBar(
         title: const Text(
           "Portfolio",
           style: TextStyle(
@@ -103,13 +104,23 @@ class _ProjectPortfolioState extends State<ProjectPortfolio> {
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: AnimationLimiter(
-            child: Center(
+      )
+          : null,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bg.gif'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: AnimationLimiter(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Wrap(
                     spacing: 16.0,

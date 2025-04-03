@@ -50,71 +50,81 @@ class _ContactScreenState extends State<ContactScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     return Scaffold(
-      appBar: AppBar(
+      appBar: isMobile
+          ? AppBar(
         title: const Text(
-          'Contact',
+          "Contact",
           style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-              color: Colors.white),
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
-        elevation: 0,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(),
-            const Text(
-              'Suivez-moi sur les réseaux sociaux',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.github),
-                  color: Colors.black,
-                  iconSize: 60,
-                  onPressed: () {
-                    _launchURL('https://github.com/axelginepro/');
-                  },
-                ),
-                const SizedBox(width: 20),
-                IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.twitter),
-                  color: Colors.blue,
-                  iconSize: 60,
-                  onPressed: () {
-                    _launchURL('https://x.com/AxelGINEPRO');
-                  },
-                ),
-                const SizedBox(width: 20),
-                IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.linkedin),
-                  color: Colors.blueAccent,
-                  iconSize: 60,
-                  onPressed: () {
-                    _launchURL('https://www.linkedin.com/in/axel-ginepro/');
-                  },
-                ),
-              ],
-            ),
-            const Spacer(),
-            if (screenWidth > 600)
-              NavButton(
-                title: "Retour à l'accueil",
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');
-                },
+      )
+          : null,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bg.gif'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'Suivez-moi sur les réseaux sociaux',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            const Spacer(),
-          ],
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const FaIcon(FontAwesomeIcons.github),
+                    color: Colors.black,
+                    iconSize: 60,
+                    onPressed: () {
+                      _launchURL('https://github.com/axelginepro/');
+                    },
+                  ),
+                  const SizedBox(width: 20),
+                  IconButton(
+                    icon: const FaIcon(FontAwesomeIcons.twitter),
+                    color: Colors.blue,
+                    iconSize: 60,
+                    onPressed: () {
+                      _launchURL('https://x.com/AxelGINEPRO');
+                    },
+                  ),
+                  const SizedBox(width: 20),
+                  IconButton(
+                    icon: const FaIcon(FontAwesomeIcons.linkedin),
+                    color: Colors.blueAccent,
+                    iconSize: 60,
+                    onPressed: () {
+                      _launchURL('https://www.linkedin.com/in/axel-ginepro/');
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+              if (screenWidth > 600)
+                NavButton(
+                  title: "Retour à l'accueil",
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  },
+                ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: screenWidth <= 600

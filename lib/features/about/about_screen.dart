@@ -64,11 +64,12 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
+    bool isMobile = MediaQuery.of(context).size.width < 600;
     return Scaffold(
-      appBar: AppBar(
+      appBar: isMobile
+          ? AppBar(
         title: const Text(
-          'Présentation',
+          "Présentation",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24,
@@ -77,44 +78,50 @@ class _AboutScreenState extends State<AboutScreen> {
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+      )
+          : null,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bg.gif'),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AnimatedOpacity(
-                opacity: _showProfileSection ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 500),
-                child: _buildProfileSection(),
-              ),
-              const SizedBox(height: 24),
-              AnimatedOpacity(
-                opacity: _showKeyPointsSection ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 500),
-                child: _buildKeyPointsSection(),
-              ),
-              const SizedBox(height: 24),
-              AnimatedOpacity(
-                opacity: _showPreviousExperienceSection ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 500),
-                child: _buildPreviousExperienceSection(),
-              ),
-              const SizedBox(height: 32),
-              if (screenWidth > 600)
-                NavButton(
-                  title: "Retour à l'accueil",
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/home');
-                  },
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnimatedOpacity(
+                  opacity: _showProfileSection ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 500),
+                  child: _buildProfileSection(),
                 ),
-            ],
+                const SizedBox(height: 24),
+                AnimatedOpacity(
+                  opacity: _showKeyPointsSection ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 500),
+                  child: _buildKeyPointsSection(),
+                ),
+                const SizedBox(height: 24),
+                AnimatedOpacity(
+                  opacity: _showPreviousExperienceSection ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 500),
+                  child: _buildPreviousExperienceSection(),
+                ),
+                const SizedBox(height: 32),
+                if (screenWidth > 600)
+                  NavButton(
+                    title: "Retour à l'accueil",
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/home');
+                    },
+                  ),
+              ],
+            ),
           ),
         ),
       ),
@@ -123,22 +130,10 @@ class _AboutScreenState extends State<AboutScreen> {
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'About',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Certificats',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.portrait),
-            label: 'Portfolio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.contact_page),
-            label: 'Contact',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'About'),
+          BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Certificats'),
+          BottomNavigationBarItem(icon: Icon(Icons.portrait), label: 'Portfolio'),
+          BottomNavigationBarItem(icon: Icon(Icons.contact_page), label: 'Contact'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
