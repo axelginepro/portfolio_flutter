@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
 import '../../shared/widgets/nav_button_home.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -48,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ).animate().fade(delay: 600.ms).slideY(begin: 0.2, end: 0),
                   Text(
-                    'Flutter',
+                    'front-end / Flutter',
                     style: theme.textTheme.titleLarge?.copyWith(
                         color: Colors.lightBlue
                     ),

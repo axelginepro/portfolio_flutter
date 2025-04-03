@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/shared/widgets/hover_cards.dart';
 
-import '../../shared/widgets/nav_button_home.dart';
-
 class CertificatsScreen extends StatefulWidget {
   const CertificatsScreen({super.key});
 
@@ -64,7 +62,7 @@ class _CertificatsScreenState extends State<CertificatsScreen> {
                   url: 'https://drive.google.com/file/d/1FxNHZ0bU-UAq3EPMClJbYOf1EGJ8-t_F/view?usp=drive_link'
               ),
               HoverCard(
-                  title: 'Certificat Opquast \nMaîtrise de la qualité en projet web\"',
+                  title: 'Certificat Opquast \nMaîtrise de la qualité en projet web"',
                   url: 'https://drive.google.com/file/d/1fU8cr9FYHjuSYyxZnfPG-QdzXn1fgokG/view?usp=drive_link'
               ),
               HoverCard(title: 'Attestation\nANSSI',

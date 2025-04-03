@@ -94,73 +94,68 @@ class _ProjectPortfolioState extends State<ProjectPortfolio> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Portfolio',
+          "Portfolio",
           style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-              color: Colors.white
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            color: Colors.white,
           ),
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3).withAlpha(128),
-        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: projects.length,
-          itemBuilder: (context, index) {
-            final project = projects[index];
-            return AnimationConfiguration.staggeredList(
-              position: index,
-              duration: const Duration(milliseconds: 2000),
-              child: SlideAnimation(
-                verticalOffset: 50.0,
-                child: FadeInAnimation(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: ProjectCard(
-                      title: project['title'],
-                      description: project['description'],
-                      imageUrl: project['imageUrl'],
-                      technologies: List<String>.from(project['technologies']),
-                      year: project['year'],
-                      githubUrl: project['githubUrl'],
-                      liveUrl: project['liveUrl'],
+        child: SingleChildScrollView(
+          child: AnimationLimiter(
+            child: Center(
+              child: Wrap(
+                spacing: 16.0,
+                runSpacing: 16.0,
+                alignment: WrapAlignment.center,
+                children: List.generate(projects.length, (index) {
+                  final project = projects[index];
+                  return AnimationConfiguration.staggeredGrid(
+                    position: index,
+                    duration: const Duration(milliseconds: 2000),
+                    columnCount: screenWidth > 600 ? 2 : 1,
+                    child: SlideAnimation(
+                      verticalOffset: 50.0,
+                      child: FadeInAnimation(
+                        child: SizedBox(
+                          width: cardWidth,
+                          child: ProjectCard(
+                            title: project['title'],
+                            description: project['description'],
+                            imageUrl: project['imageUrl'],
+                            technologies:
+                            List<String>.from(project['technologies']),
+                            year: project['year'],
+                            githubUrl: project['githubUrl'],
+                            liveUrl: project['liveUrl'],
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                }),
               ),
-            );
-          },
+            ),
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'About',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Certificats',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.portrait),
-            label: 'Portfolio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.contact_page),
-            label: 'Contact',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Accueil"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "About"),
+          BottomNavigationBarItem(icon: Icon(Icons.school), label: "Certificats"),
+          BottomNavigationBarItem(icon: Icon(Icons.portrait), label: "Portfolio"),
+          BottomNavigationBarItem(icon: Icon(Icons.contact_page), label: "Contact"),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
         onTap: _onItemTapped,
       ),
     );

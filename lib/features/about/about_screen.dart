@@ -41,7 +41,7 @@ class _AboutScreenState extends State<AboutScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'à propos',
+          'Présentation',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24,
@@ -57,17 +57,19 @@ class _AboutScreenState extends State<AboutScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _buildProfileSection(),
-            const SizedBox(height: 24),
-            _buildKeyPointsSection(),
-            const SizedBox(height: 24),
-            _buildPreviousExperienceSection(),
-            const SizedBox(height: 32),
-          ],
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildProfileSection(),
+              const SizedBox(height: 24),
+              _buildKeyPointsSection(),
+              const SizedBox(height: 24),
+              _buildPreviousExperienceSection(),
+              const SizedBox(height: 32),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -165,81 +167,91 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 
   Widget _buildKeyPointsSection() {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Center(
-              child: Text(
-                'Les 3 principaux points',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF2196F3),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.center,
-              child: CardsBulletPoints(
-                title: "Conception d'un support web design et video.",
-                details:
-                    "(Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Figma)",
-              ),
-            ),
-            const Divider(height: 16),
-            CardsBulletPoints(
-              title: "Gestion de Projet de communication numérique.",
-              details:
-                  "(Création Persona, Newsletter, Instagram, Facebook, Youtube)",
-            ),
-            const Divider(height: 16),
-            CardsBulletPoints(
-              title: "Intégration/Développement",
-              details:
-                  "(html/css, javascript, wordpress, php, react, react.native, flutter)",
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPreviousExperienceSection() {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.work, color: Color(0xFF2196F3)),
-                SizedBox(width: 8),
-                Text(
-                  "Expérience précédente",
+    final screenWidth = MediaQuery.of(context).size.width;
+    final cardWidth = screenWidth * 0.9;
+    return SizedBox(
+      width: cardWidth,
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Center(
+                child: Text(
+                  'Les 3 principaux points',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF2196F3),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            const Text(
-              "Précédemment chez LDLC-Event Lyon durant deux ans (2020-2022), en tant que développeur front-end pour les sites LDLC-OL et d4gamers",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 15, color: Colors.black87),
-            ),
-          ],
+              ),
+              const SizedBox(height: 16),
+              Align(
+                alignment: Alignment.center,
+                child: CardsBulletPoints(
+                  title: "Conception d'un support web design et video.",
+                  details:
+                      "(Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Figma)",
+                ),
+              ),
+              const Divider(height: 16),
+              CardsBulletPoints(
+                title: "Gestion de Projet de communication numérique.",
+                details:
+                    "(Création Persona, Newsletter, Instagram, Facebook, Youtube)",
+              ),
+              const Divider(height: 16),
+              CardsBulletPoints(
+                title: "Intégration/Développement",
+                details:
+                    "(html/css, javascript, wordpress, php, react, react.native, flutter)",
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPreviousExperienceSection() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final cardWidth = screenWidth * 0.9;
+    return SizedBox(
+      width : cardWidth,
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.work, color: Color(0xFF2196F3)),
+                  SizedBox(width: 8),
+                  Text(
+                    "Expérience précédente",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF2196F3),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                "Précédemment chez LDLC-Event Lyon durant deux ans (2020-2022), en tant que développeur front-end pour les sites LDLC-OL et d4gamers",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15, color: Colors.black87),
+              ),
+            ],
+          ),
         ),
       ),
     );
